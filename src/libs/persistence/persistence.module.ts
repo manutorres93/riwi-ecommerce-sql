@@ -7,11 +7,11 @@ import { User } from 'src/modules/users/entities/user.entity';
 @Global()
 @Module({
   imports: [
-    ConfigModule.forRoot({
+   /*  ConfigModule.forRoot({
       envFilePath: '.env',
       load: [dbConfig],
       isGlobal: true,
-    }),
+    }), */
     TypeOrmModule.forRootAsync({
       useFactory: (configService: ConfigType<typeof dbConfig>) => {
         const { db } = configService;
