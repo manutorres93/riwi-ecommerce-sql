@@ -15,15 +15,15 @@ export class User{
   name: string;
 
   @ApiProperty()
-  @Column()
+  @Column({ unique: true, nullable: false })
   email: string;
 
   @ApiProperty()
-  @Column()
+  @Column({nullable: false})
   password: string;
 
   @ApiProperty()
-  @Column()
+  @Column({ default: 'user'})
   role: string;
 
   
