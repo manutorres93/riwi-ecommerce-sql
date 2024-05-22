@@ -1,8 +1,16 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UsersService } from './users.service';
+import { JwtAuthGuard } from 'src/libs/auth/guard';
+import { Auth } from 'src/libs/common/decorators';
+import { Role } from 'src/libs/common/enums/role.enum';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+
+@ApiBearerAuth()
+@ApiTags('users')
+@Auth(Role.USER)
 @Controller('user')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
@@ -14,8 +22,8 @@ export class UsersController {
 
 
   @Get()
-  findAll(/* @ActiveUser() user:UserActiveInterface */) {
-    //console.log(user);
+  findAll() {
+  
     return this.usersService.findAll();
   }
 
