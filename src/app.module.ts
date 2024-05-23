@@ -6,6 +6,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './modules/users/users.module';
+import { AuthModule } from './libs/auth/auth.module';
+
 
 
 @Module({
@@ -16,7 +18,8 @@ import { UsersModule } from './modules/users/users.module';
       isGlobal: true,
     }),
      UsersModule,
-     PersistenceModule
+     PersistenceModule,
+     AuthModule
     ],
     controllers: [AppController],
     providers: [AppService],
